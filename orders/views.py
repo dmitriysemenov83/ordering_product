@@ -63,7 +63,7 @@ class StaffListAPIView(generics.ListAPIView):
 class OrderRetrieveAPIView(generics.RetrieveAPIView):
     serializer_class = OrderSerializer
     queryset = Order.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsOwnerOrStaff]
 
 
 class OrderUpdateAPIView(generics.UpdateAPIView):
@@ -74,4 +74,4 @@ class OrderUpdateAPIView(generics.UpdateAPIView):
 
 class OrderDeleteAPIView(generics.DestroyAPIView):
     queryset = Order.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsOwnerOrStaff]
